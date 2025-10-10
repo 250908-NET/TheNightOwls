@@ -3,12 +3,14 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 export function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
+    const { theme } = useTheme();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
 
@@ -47,6 +49,7 @@ export function Navigation() {
                 src="/FadeBook Logo with Razor Icon.svg"
                 alt="FadeBook logo"
                 className="w-24 h-24 object-contain mr-1"
+                style={theme === 'dark' ? { filter: 'brightness(10)', mixBlendMode: 'normal' } : {}}
                 loading="eager"
               />
             </Link>
